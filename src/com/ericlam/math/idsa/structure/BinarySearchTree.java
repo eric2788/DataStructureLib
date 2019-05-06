@@ -3,6 +3,7 @@ package com.ericlam.math.idsa.structure;
 import com.ericlam.math.idsa.structure.api.Tree;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 
 public class BinarySearchTree<T extends Comparable> extends Tree<T> {
 
@@ -37,8 +38,7 @@ public class BinarySearchTree<T extends Comparable> extends Tree<T> {
     public void print(T node) {
         Node n = find(node);
         if (n == null) {
-            System.out.println("No this data");
-            return;
+            throw new NoSuchElementException(node.toString());
         }
         print(n);
     }
@@ -66,8 +66,7 @@ public class BinarySearchTree<T extends Comparable> extends Tree<T> {
             root = find(insert);
         }
         if (root == null) {
-            System.out.println("[ERROR] No " + insert + " in this BinaryTree.");
-            root = this.root;
+            throw new NoSuchElementException(insert.toString());
         }
         Node tmp = new Node(data);
         tmp.left = tmp.right = null;
@@ -128,7 +127,7 @@ public class BinarySearchTree<T extends Comparable> extends Tree<T> {
                 }
             }
         }
-        return "No this data";
+        throw new NoSuchElementException(data.toString());
     }
 
     private void print(Node node){
